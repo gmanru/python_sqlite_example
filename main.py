@@ -40,3 +40,18 @@ def save_to_file(
 ):
     with open(output_file_name, 'w') as file_data:
         file_data.write(input_data)
+
+def main():
+    db_result: list = interract_with_db(
+        dbpath=DB_PATH
+    )
+    result= print_beautifull_result(
+        input_data=db_result
+    )
+    save_to_file(
+        input_data=result,
+        output_file_name='out.txt'
+    )
+
+main()
+
