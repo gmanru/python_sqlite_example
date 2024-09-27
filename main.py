@@ -34,3 +34,9 @@ def print_beautifull_result(
     return output_data
      
 
+def save_to_file(
+    input_data,
+    output_file_name,
+):
+    with open(output_file_name, 'w') as file_data:
+        file_data.write(input_data)
