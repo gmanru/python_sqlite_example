@@ -23,3 +23,14 @@ def interract_with_db(
     con.close()
     return output
 
+
+def print_beautifull_result(
+    input_data
+):
+    output_data=''
+    for data in input_data:
+        output_data += data[0] + '\n'
+
+    return output_data
+     
+
