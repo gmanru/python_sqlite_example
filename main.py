@@ -1,4 +1,5 @@
-from sqlite3 import connect, Connection, Cursor
+from sqlite3 import Connection, Cursor, connect
+
 
 DB_PATH: str = '/Users/20684538/Library/DBeaverData/workspace6/.metadata/sample-database-sqlite-1/Chinook.db'
 
