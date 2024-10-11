@@ -2,37 +2,31 @@ from sqlite3 import connect, Connection, Cursor
 
 DB_PATH: str = '/Users/20684538/Library/DBeaverData/workspace6/.metadata/sample-database-sqlite-1/Chinook.db'
 
-def interract_with_db(
-    dbpath: str,
-) -> list:
-    con = sqlite3.connect(dbpath)
-    cur = con.cursor()
 
-# Напишите SQL запрос в строке.
-    cur.execute('''
-        SELECT Name 
-        FROM Track;
-    ''')
+def _interact_with_db(
+    database_path: str,
+) -> list[tuple] | None:
+    try:
+        connection_with_db: Connection = connect(database_path)
+        db_cursor: Cursor = connection_with_db.cursor()
+        db_response: Cursor = db_cursor.execute('SELECT Name FROM Track;')
+        function_output: list[tuple] = db_response.fetchall()
+    except Exception as e:
+        print(e)
+        connection_with_db.close()
+        return None
 
-    table = cur.fetchall()[0]
-    
-
-# Напишите SQL запрос в строке.
-    results = cur.execute('SELECT Name FROM Track;')
-    output = results.fetchall()
-    con.close()
-    return output
+    return function_output
 
 
-def print_beautifull_result(
-    input_data
-):
-    output_data=''
-    for data in input_data:
-        output_data += data[0] + '\n'
+def _split_tracks_to_new_lines(
+    input_data: list[tuple],
+) -> str:
+    output_data: str = ''
+    for track in input_data:  # noqa: WPS519
+        output_data += '{0}\n'.format(track[0])
 
     return output_data
-     
 
 def save_to_file(
     input_data,
