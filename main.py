@@ -28,11 +28,16 @@ def _split_tracks_to_new_lines(
 
     return output_data
 
-def save_to_file(
+
+def _save_to_file(
     input_data,
     output_file_name,
 ):
-    with open(output_file_name, 'w') as file_data:
+    with open(
+        file=output_file_name,
+        mode='w',
+        encoding='utf-8',
+    ) as file_data:
         file_data.write(input_data)
 
 def main():
